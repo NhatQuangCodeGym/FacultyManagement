@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Faculty Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Instructor Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/students}">Student Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/instructors}">Instructor Management</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class ="container">
+    <div class = "row">
+        <h1> List Instructors </h1>
+    </div>
+
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{/instructors/new}" class = "btn btn-primary btn-sm mb-3"> Add Instructor</a>
+        </div>
+    </div>
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th> Instructor Name</th>
+            <th> Instructor Email</th>
+            <th> Instructor Phone </th>
+            <th> Instructor Address </th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "instructor:${instructors}">
+            <td th:text = "${instructor.fullName}"></td>
+            <td th:text = "${instructor.email}"></td>
+            <td th:text = "${instructor.phone}"></td>
+            <td th:text = "${instructor.address}"></td>
+            <td>
+                <a th:href = "@{/instructors/edit/{id}(id=${instructor.id})}"
+                   class = "btn btn-primary">Update</a>
+
+                <a th:href = "@{/instructors/{id}(id=${instructor.id})}"
+                   class = "btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>
