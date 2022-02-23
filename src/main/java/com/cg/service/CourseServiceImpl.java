@@ -21,6 +21,11 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findAll();
     }
 
+    @Override
+    public Iterable<Course> findAll(){
+        return courseRepository.findAll();
+    };
+
 
 
 }

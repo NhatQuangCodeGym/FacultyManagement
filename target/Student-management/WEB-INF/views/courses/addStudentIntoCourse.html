@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org" lang="en">
+        <head>
+        <meta charset="ISO-8859-1">
+        <title>Faculty Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<th:block th:replace="/layout/head :: head"/>
+
+
+<div class="main_content_inner ">
+    <div class="container-fluid p-0 sm_padding_15px">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="white_card card_height_100 mb_30">
+                    <div class="white_card_header">
+                        <div class="box_header m-0">
+                            <div class="main-title">
+                                <h3 class="m-0">Course select</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                    <div class="white_card_body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01">
+<!--                                <option selected="">Choose...</option>-->
+<!--                                <option value="1">One</option>-->
+<!--                                <option value="2">Two</option>-->
+<!--                                <option value="3">Three</option>-->
+                            </select>
+                            <button type="button" id="btnCourse" class="btn btn-outline-primary">
+                                Submit Course
+                            </button>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected="">Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect02">Add</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-6">
+                <div class="white_card card_height_100 mb_30">
+                    <div class="white_card_header">
+                        <div class="box_header m-0">
+                            <div class="main-title">
+                                <h3 class="m-0">Student in Course</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/resources/js/jquery-3.6.0.js"></script>
+<script src="/resources/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/js/jquery.validate-1.19.3.min.js"></script>
+<script>
+    $( document ).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: "/api/courses"
+        })
+            .done(function (data) {
+                console.log(data);
+                let str=` <option selected="">Choose...</option>`;
+                for(let i=0; i<data.length; i++) {
+                    str+= ` <option value=${data[i].courseName}</option>${data[i].courseName}</option>`
+                }
+              $("#inputGroupSelect01").html(str);
+            })
+            .fail(function (resp) {
+                alert("Show update modal error")
+            })
+    });
+
+
+
+</script>
+

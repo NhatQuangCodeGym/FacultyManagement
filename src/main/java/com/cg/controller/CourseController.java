@@ -29,13 +29,11 @@ public class CourseController {
     @GetMapping
     public ModelAndView showCourseList(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("courses/list");
+        modelAndView.setViewName("courses/addStudentIntoCourse");
 
         List<Course> courses = courseService.getAllCourse();
         modelAndView.addObject("courses",courses);
         return modelAndView;
     }
-
-
 
 }

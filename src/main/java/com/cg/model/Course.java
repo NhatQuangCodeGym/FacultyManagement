@@ -24,18 +24,24 @@ public class Course {
     private Instructor courseHeader;
 
 
-    @OneToMany(targetEntity = Student.class, mappedBy = "course")
-    private Set<Student> students;
+   // @OneToMany(targetEntity = Student.class, mappedBy = "course")
+   // private Set<Student> students;
 
     public Course() {
     }
 
-    public Course(Long id, String courseName, Instructor courseHeader, Set<Student> students) {
+    public Course(Long id, String courseName, Instructor courseHeader) {
         this.id = id;
         this.courseName = courseName;
         this.courseHeader = courseHeader;
-        this.students = students;
     }
+
+    //public Course(Long id, String courseName, Instructor courseHeader, Set<Student> students) {
+  //      this.id = id;
+  //      this.courseName = courseName;
+   //     this.courseHeader = courseHeader;
+   //     this.students = students;
+  //  }
 
     public Long getId() {
         return id;
@@ -61,11 +67,11 @@ public class Course {
         this.courseHeader = courseHeader;
     }
 
-    public Set<Student> getStudents() {
-        return students;
-    }
+//    public Set<Student> getStudents() {
+//        return students;
+//    }
 
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
+//    public void setStudents(Set<Student> students) {
+//        this.students = students;
+//    }
 }

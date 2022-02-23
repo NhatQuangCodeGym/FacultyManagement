@@ -13,6 +13,8 @@ public interface CourseService {
 
     List<Course> getAllCourse();
 
+    Iterable<Course> findAll();
+
 //    Student saveStudent(Student student);
 //
 //    Student getStudentById(Long id);
