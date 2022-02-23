@@ -22,7 +22,7 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ModelAndView showListPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("instructors/list");
@@ -57,20 +57,19 @@ public class InstructorController {
     public ModelAndView deleteInstructor(@PathVariable Long id) {
 //        ModelAndView modelAndView = new ModelAndView();
         instructorService.deleteInstructorById(id);
-        return new ModelAndView("redirect:/instructors/list");
+        return new ModelAndView("redirect:/instructors");
     }
 
 
     @PostMapping("/create")
     public ModelAndView saveInstructor(@ModelAttribute("instructor") Instructor instructor) {
         instructorService.saveInstructor(instructor);
-        return new ModelAndView("redirect:/instructors/list");
+        return new ModelAndView("redirect:/instructors");
     }
 
     @PostMapping("/update/{id}")
     public ModelAndView updateInstructor(@PathVariable Long id,
-                                      @ModelAttribute("instructor") Instructor instructor,
-                                      Model model) {
+                                      @ModelAttribute("instructor") Instructor instructor) {
 
         // get student from database by id
         Instructor existingInstructor = instructorService.getInstructorById(id);
@@ -82,7 +81,7 @@ public class InstructorController {
 
         // save updated student object
         instructorService.updateInstructor(existingInstructor);
-        return new ModelAndView("redirect:/instructors/list");
+        return new ModelAndView("redirect:/instructors");
     }
 
 }

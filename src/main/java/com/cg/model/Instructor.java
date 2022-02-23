@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
         @Column(name="address")
         private String address;
 
-//        @OneToOne(mappedBy = "courseHeader")
-//        private Course course;
+        @OneToOne(mappedBy = "courseHeader")
+        private Course course;
 
         public Instructor() {
         }

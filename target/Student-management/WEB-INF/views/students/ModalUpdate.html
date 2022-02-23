@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <th:block th:fragment="modalUpdate">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
         <title>Student Management System</title>
@@ -12,24 +10,8 @@
               crossorigin="anonymous">
     </head>
     <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">Student Management System</a>
+    <th:block th:replace="/layout/head :: head"/>
 
-        <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/students/list}">Student Management</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <br>
     <br>
     <div class = "container">
@@ -83,5 +65,4 @@
         </div>
     </div>
     </body>
-    </html>
 </th:block>

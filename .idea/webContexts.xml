@@ -4,6 +4,8 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/courses.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/instructors/list.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/instructors" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout/head.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layout" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students/ModalCreate.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students/students.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students" />
       </map>

@@ -23,7 +23,7 @@ public class StudentController {
 //    }
 
     // handler method to handle list students and return mode and view
-    @GetMapping("/list")
+    @GetMapping()
     public ModelAndView showListPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("students/students");
@@ -58,14 +58,14 @@ public class StudentController {
     public ModelAndView deleteStudent(@PathVariable Long id) {
 //        ModelAndView modelAndView = new ModelAndView();
         studentService.deleteStudentById(id);
-        return new ModelAndView("redirect:/students");
+        return new ModelAndView("redirect:/students/list");
     }
 
 
     @PostMapping("/create")
     public ModelAndView saveStudent(@ModelAttribute("student") Student student) {
         studentService.saveStudent(student);
-        return new ModelAndView("redirect:/students");
+        return new ModelAndView("redirect:/students/list");
     }
 
     @PostMapping("/update/{id}")
@@ -82,7 +82,7 @@ public class StudentController {
 
         // save updated student object
         studentService.updateStudent(existingStudent);
-        return new ModelAndView("redirect:/students");
+        return new ModelAndView("redirect:/students/list");
     }
 
     // handler method to handle delete student request

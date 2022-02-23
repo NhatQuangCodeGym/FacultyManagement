@@ -1,6 +1,9 @@
 package com.cg.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -11,9 +14,11 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Vui lòng nhập tên khoa")
     @Column(name="course_name")
     private String courseName;
 
+    @NotBlank(message = "Vui lòng nhập chủ nhiệm khoa ")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_header", referencedColumnName = "id")
     private Instructor courseHeader;

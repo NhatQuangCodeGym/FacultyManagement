@@ -4,4 +4,45 @@
     <link rel="stylesheet" href="/resources/fontawesome-free-5.15.4-web/css/fontawesome.min.css">
     <link rel="stylesheet" href="/resources/fontawesome-free-5.15.4-web/css/solid.min.css">
     <link rel="stylesheet" href="/resources/css/styles.css">
+
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Faculty Management System</title>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </head>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="">Faculty Management System</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse instructor" >
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/instructors}">Instructor Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Student Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/courses}">Course Management</a>
+                </li>
+            </ul>
+        </div>
+
+<!--        <div class="collapse navbar-collapse student" >-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" th:href="@{/student}">Student Management</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+    </nav>
 </th:block>
