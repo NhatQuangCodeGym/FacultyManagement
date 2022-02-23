@@ -19,7 +19,8 @@
             <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <h1 class = "text-center"> Update Student </h1>
                 <div class = "card-body">
-                    <form th:action="@{/students/update/{id} (id=${student.id})}" th:object = "${student}" method="POST">
+                    <div th:text = "${script}"></div>
+                    <form th:action="@{/students/edit/{id} (id=${student.id})}" th:object = "${student}" method="POST">
                         <div class ="form-group">
                             <label> Student First Name </label>
                             <input
@@ -35,7 +36,6 @@
                             <label> Student Last Name </label>
                             <input
                                     type = "text"
-                                    name = "lastName"
                                     th:field = "*{lastName}"
                                     class = "form-control"
                                     placeholder="Enter Student Last Name"

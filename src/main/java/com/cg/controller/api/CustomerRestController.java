@@ -3,6 +3,7 @@ package com.cg.controller.api;
 import com.cg.exception.DataInputException;
 import com.cg.model.Course;
 
+import com.cg.model.Student;
 import com.cg.service.CourseService;
 import com.cg.service.StudentService;
 import com.cg.utils.AppUtil;
@@ -41,6 +42,21 @@ public class CustomerRestController {
         return new ResponseEntity<>(listCoures, HttpStatus.OK);
     }
 
+    @GetMapping("/addStudentToCourse")
+    public ResponseEntity<Iterable<?>> getAllStudentNotInCourse(){
+        Iterable<Student> students = courseService.getAllStudentNotInCourse();
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    @PostMapping("/handlerAddStudent/{courseID}/{studentId}")
+    public ResponseEntity<Student> handlerAddStudent(@PathVariable("courseID") Long courseID, @PathVariable("studentId") Long studentId){
+       Student student = studentService.getStudentById(studentId);
+       Course course = courseService.findById(courseID).get();
+
+        student.setCourse(course);
+      studentService.save(student);
+       return new ResponseEntity<>( student, HttpStatus.OK);
+    }
 
 //    @PostMapping("/create")
 //    public ResponseEntity<Customer> doCreate(@RequestBody Customer customer) {
