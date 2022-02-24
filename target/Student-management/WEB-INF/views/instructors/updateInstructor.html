@@ -20,6 +20,9 @@
             <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <h1 class = "text-center"> Update Instructor </h1>
                 <div class = "card-body">
+                    <ul th:each="s:${script}">
+                        <li th:text="${s}"></li>
+                    </ul>
                     <form th:action="@{/instructors/update/{id} (id=${instructor.id})}" th:object = "${instructor}" method="POST">
                         <div class ="form-group">
                             <label> Instructor Full name </label>

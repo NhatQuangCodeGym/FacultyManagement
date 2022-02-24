@@ -21,9 +21,11 @@ import javax.validation.constraints.Size;
         @Column(unique = true, nullable = false)
         private String email;
 
+        @NotBlank(message = " Vui lòng nhập sđt")
         @Column(name ="phone")
         private String phone;
 
+        @NotBlank(message = " Vui lòng nhập địa chỉ")
         @Column(name="address")
         private String address;
 

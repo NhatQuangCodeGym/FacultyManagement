@@ -7,9 +7,13 @@ import com.cg.service.InstructorService;
 import com.cg.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/instructors")
@@ -62,26 +66,50 @@ public class InstructorController {
 
 
     @PostMapping("/create")
-    public ModelAndView saveInstructor(@ModelAttribute("instructor") Instructor instructor) {
+    public ModelAndView saveInstructor( @Validated @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasFieldErrors()) {
+            List<String> scripts = new ArrayList<>();
+            for (ObjectError s: bindingResult.getAllErrors()
+            ) {
+                scripts.add(s.getDefaultMessage());
+            }
+
+            modelAndView.addObject("script",scripts);
+            modelAndView.setViewName("instructors/addInstructor");
+            return modelAndView;
+        }
         instructorService.saveInstructor(instructor);
         return new ModelAndView("redirect:/instructors");
     }
 
     @PostMapping("/update/{id}")
     public ModelAndView updateInstructor(@PathVariable Long id,
-                                      @ModelAttribute("instructor") Instructor instructor) {
+                                      @Validated @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasFieldErrors()) {
+//            return new ModelAndView("error")
+            List<String> scripts = new ArrayList<>();
+            for (ObjectError s : bindingResult.getAllErrors()
+            ) {
+                scripts.add(s.getDefaultMessage());
+            }
 
-        // get student from database by id
-        Instructor existingInstructor = instructorService.getInstructorById(id);
-        existingInstructor.setId(id);
-        existingInstructor.setFullName(instructor.getFullName());
-        existingInstructor.setEmail(instructor.getEmail());
-        existingInstructor.setPhone(instructor.getPhone());
-        existingInstructor.setAddress(instructor.getAddress());
+            modelAndView.addObject("script", scripts);
+            modelAndView.setViewName("instructors/updateInstructor");
+            return modelAndView;
+        } else {
+            // get student from database by id
+            Instructor existingInstructor = instructorService.getInstructorById(id);
+            existingInstructor.setId(id);
+            existingInstructor.setFullName(instructor.getFullName());
+            existingInstructor.setEmail(instructor.getEmail());
+            existingInstructor.setPhone(instructor.getPhone());
+            existingInstructor.setAddress(instructor.getAddress());
 
-        // save updated student object
-        instructorService.updateInstructor(existingInstructor);
-        return new ModelAndView("redirect:/instructors");
+            // save updated student object
+            instructorService.updateInstructor(existingInstructor);
+            return new ModelAndView("redirect:/instructors");
+        }
     }
-
 }
