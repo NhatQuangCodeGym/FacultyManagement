@@ -54,7 +54,7 @@ public class CustomerRestController {
        Course course = courseService.findById(courseID).get();
 
         student.setCourse(course);
-      studentService.save(student);
+        studentService.save(student);
        return new ResponseEntity<>( student, HttpStatus.OK);
     }
 

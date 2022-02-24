@@ -73,12 +73,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Class A</td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -99,6 +94,7 @@
         $("#addStudentToCourse").on("click",function(){
             handlerAddStudent();
         })
+
     });
         function showCourseList() {
             $.ajax({
@@ -137,8 +133,10 @@
     }
 
     function handlerAddStudent(){
-      let courseId =  $("#inputGroupSelect01").val()  ;
+      let courseId =  $("#inputGroupSelect01").val();
+      let courseName = $("#inputGroupSelect01 option:selected").text();
       let studentId = $("#inputGroupSelect02").val();
+
       $.ajax({
           type: "POST",
           url: "/api/courses/handlerAddStudent/"+courseId+"/"+studentId
@@ -148,10 +146,11 @@
                                     <th scope="row">${data.id}</th>
                                     <td>${data.firstName}</td>
                                     <td>${data.lastName}</td>
-                                    <td>data.course.cour</td>
+                                    <td>${courseName}</td>
                                 </tr>`;
 
           $("#tbody").append(str);
+          showStudentAvailable();
       })
           .fail(function (resp) {
              console.log(resp);

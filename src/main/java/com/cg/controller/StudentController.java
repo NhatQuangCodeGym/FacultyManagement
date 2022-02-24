@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -64,7 +67,19 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ModelAndView saveStudent(@Validated @ModelAttribute("student") Student student) {
+    public ModelAndView saveStudent(@Validated @ModelAttribute("student") Student student,BindingResult bindingResult) {
+       ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasFieldErrors()) {
+            List<String> scripts = new ArrayList<>();
+            for (ObjectError s: bindingResult.getAllErrors()
+            ) {
+                scripts.add(s.getDefaultMessage());
+            }
+
+            modelAndView.addObject("script",scripts);
+            modelAndView.setViewName("students/ModalCreate");
+            return modelAndView;
+        }
         studentService.saveStudent(student);
         return new ModelAndView("redirect:/students");
     }
@@ -78,7 +93,13 @@ public class StudentController {
 
         if (bindingResult.hasFieldErrors()){
 //            return new ModelAndView("error")
-            modelAndView.addObject("script",bindingResult.getAllErrors().get(0).getDefaultMessage());
+            List<String> scripts = new ArrayList<>();
+            for (ObjectError s: bindingResult.getAllErrors()
+                 ) {
+                scripts.add(s.getDefaultMessage());
+            }
+
+            modelAndView.addObject("script",scripts);
             modelAndView.setViewName("students/ModalUpdate");
             return modelAndView;
         }
