@@ -38,5 +38,13 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.getAllStudentNotInCourse();
     }
 
+    @Override
+    public Course save(Course course) {
+        return courseRepository.save(course);
+    }
 
+    @Override
+    public void updateCourse(Course course) {
+        courseRepository.save(course);
+    }
 }

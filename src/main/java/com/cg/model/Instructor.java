@@ -3,8 +3,9 @@ package com.cg.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
-    @Entity
+@Entity
     @Table(name = "instructors")
     public class Instructor {
 
@@ -29,8 +30,8 @@ import javax.validation.constraints.Size;
         @Column(name="address")
         private String address;
 
-        @OneToOne(mappedBy = "courseHeader")
-        private Course course;
+        @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseHeader")
+        private Set<Course> courses;
 
         public Instructor() {
         }
@@ -92,11 +93,23 @@ import javax.validation.constraints.Size;
             this.address = address;
         }
 
-//        public Course getCourse() {
-//            return course;
-//        }
-//
-//        public void setCourse(Course course) {
-//            this.course = course;
-//        }
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
+    @Override
+        public String toString() {
+            return "Instructor{" +
+                    "id=" + id +
+                    ", fullName='" + fullName + '\'' +
+                    ", email='" + email + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", address='" + address + '\'' +
+
+                    '}';
+        }
     }

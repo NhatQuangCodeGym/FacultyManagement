@@ -5,6 +5,7 @@ import com.cg.model.Course;
 
 import com.cg.model.Student;
 import com.cg.service.CourseService;
+import com.cg.service.InstructorService;
 import com.cg.service.StudentService;
 import com.cg.utils.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class CustomerRestController {
     private CourseService courseService;
 
     @Autowired
+    private InstructorService instructorService;
+
+    @Autowired
     private AppUtil appUtil;
 
     @GetMapping()
@@ -47,6 +51,9 @@ public class CustomerRestController {
         Iterable<Student> students = courseService.getAllStudentNotInCourse();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
+
+//    @GetMapping("/courseList")
+//    public
 
     @PostMapping("/handlerAddStudent/{courseID}/{studentId}")
     public ResponseEntity<Student> handlerAddStudent(@PathVariable("courseID") Long courseID, @PathVariable("studentId") Long studentId){
