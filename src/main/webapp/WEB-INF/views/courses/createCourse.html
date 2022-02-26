@@ -21,7 +21,7 @@
                     <ul th:each="s:${script}">
                         <li th:text="${s}"></li>
                     </ul>
-                    <form th:action="@{/courses/create}" th:object = "${course}" method="POST">
+                    <form th:action="@{/courses/create}" method="POST">
                         <div class ="form-group">
                             <label> Course Name </label>
                             <input

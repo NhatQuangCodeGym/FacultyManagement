@@ -39,7 +39,7 @@
                         <div class ="form-group">
                             <label> Course Header </label>
                             <div id="cid_3" class="form-input-wide" data-layout="half">
-                                <select class="form-select" th:fields="*{course}" name= "course" id="course" required>
+                                <select class="form-select" th:field="*{courseHeader.id}" name= "course" id="course" required>
                                     <option  value="">Choose...</option>
                                     <th:block th:each="ch:${courseHeader}">
                                         <option th:text="${ch.fullName}" th:value="${ch.id}">

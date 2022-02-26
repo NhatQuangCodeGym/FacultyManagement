@@ -57,13 +57,13 @@ public class CourseController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("courses/updateCourse");
         modelAndView.addObject("courseHeader", instructorService.getAllInstructors());
-        model.addAttribute("course", courseService.findById(id));
+        model.addAttribute("course", courseService.findById(id).get());
 
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public ModelAndView handlerAddNewCourse(@Valid @ModelAttribute("course") CourseDTO courseDTO, BindingResult bindingResult){
+    public ModelAndView handlerAddNewCourse(@Valid @ModelAttribute CourseDTO courseDTO, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
         System.out.println(courseDTO);
         if (bindingResult.hasFieldErrors()) {
