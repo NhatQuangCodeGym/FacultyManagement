@@ -23,7 +23,7 @@
             <th> Course ID</th>
             <th> Course Name</th>
             <th> Course Header </th>
-            <th> Student Amount </th>
+            <th> Student List </th>
             <th>Action</th>
         </tr>
         </thead>
@@ -33,13 +33,16 @@
             <td th:text = "${course.id}"></td>
             <td th:text = "${course.courseName}"></td>
             <td th:text = "${course.courseHeader.getFullName()}"></td>
-            <td></td>
+            <td>
+                <a th:href="@{/courses/showStudentsList/{id}(id=${course.id})}"
+                class = "btn btn-primary"> Get detail </a>
+            </td>
 <!--            <td th:text = "${course.address}"></td>-->
             <td>
                 <a th:href = "@{/courses/update/{id}(id=${course.id})}"
                    class = "btn btn-primary">Update</a>
 
-                <a th:href = "@{/courses/addStudentToCourse}"
+                <a th:href = "@{/api/courses/addStudentToCourse}"
                    class = "btn btn-danger">Add student</a>
 
             </td>
