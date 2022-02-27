@@ -15,7 +15,7 @@
 <div class ="form-group">
     <label> Student List </label>
     <div id="cid_3" class="form-input-wide" data-layout="half">
-        <select class="form-select"  name= "instructorId" id="course" required>
+        <select class="form-select">
             <option  value="">Choose...</option>
             <th:block th:each="student:${students}">
                 <option th:text="${student.getLastName()}" th:value="${ch.id}">
@@ -232,4 +232,4 @@
 <!--          })-->
 <!--    }-->
 <!--</script>-->
-
+</div>

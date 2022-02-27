@@ -75,6 +75,14 @@ public class CourseController {
         return modelAndView;
     }
 
+    @GetMapping("/courses/showStudentsList/{id}")
+    public ModelAndView showStudentList(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("/courses/studentsInCourse");
+        List<Student> students = studentService.findAllByCourseId(id);
+        modelAndView.addObject("students", students);
+        return modelAndView;
+    }
+
     @PostMapping("/create")
     public ModelAndView handlerAddNewCourse(@Valid @ModelAttribute CourseDTO courseDTO, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
