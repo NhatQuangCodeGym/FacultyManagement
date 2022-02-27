@@ -42,7 +42,7 @@
                 <a th:href = "@{/courses/update/{id}(id=${course.id})}"
                    class = "btn btn-primary">Update</a>
 
-                <a th:href = "@{/api/courses/addStudentToCourse}"
+                <a th:href = "@{/courses/addStudentToCourse/{id}(id=${course.id})}"
                    class = "btn btn-danger">Add student</a>
 
             </td>

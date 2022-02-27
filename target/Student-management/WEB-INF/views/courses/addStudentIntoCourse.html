@@ -12,153 +12,224 @@
 <th:block th:replace="/layout/head :: head"/>
 
 
-<div class="main_content_inner ">
-    <div class="container-fluid p-0 sm_padding_15px">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="white_card card_height_100 mb_30">
-                    <div class="white_card_header">
-                        <div class="box_header m-0">
-                            <div class="main-title">
-                                <h3 class="m-0">Course select</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
+<div class ="form-group">
+    <label> Student List </label>
+    <div id="cid_3" class="form-input-wide" data-layout="half">
+        <select class="form-select"  name= "instructorId" id="course" required>
+            <option  value="">Choose...</option>
+            <th:block th:each="student:${students}">
+                <option th:text="${student.getLastName()}" th:value="${ch.id}">
+                </option>
+            </th:block>
 
-                    </div>
-                    <div class="white_card_body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Course: </label>
-                            </div>
-                            <select class="custom-select" id="inputGroupSelect01">
-<!--                                <option selected="">Choose...</option>-->
-<!--                                <option value="1">One</option>-->
-<!--                                <option value="2">Two</option>-->
-<!--                                <option value="3">Three</option>-->
-                            </select>
-                            <button type="button" id="btnCourse" class="btn btn-outline-primary">
-                                Submit Course
-                            </button>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class = "col-md-6 ">
-                                <span class = "fs-4">Select student to add :  </span>
-                            </div>
-                            <br>
-                            <select class="custom-select" id="inputGroupSelect02">
-<!--                                <option selected="">Ch?n l?p ?? thêm h?c sinh...</option>-->
-
-                            </select>
-                            <div class="input-group-append">
-                                <label class="input-group-text" id="addStudentToCourse" for="inputGroupSelect02">Add</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-lg-6">
-                <div class="white_card card_height_100 mb_30">
-                    <div class="white_card_header">
-                        <div class="box_header m-0">
-                            <div class="main-title">
-                                <h3 class="m-0">Student in Course</h3>
-                            </div>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Course</th>
-                                </tr>
-                                </thead>
-                                <tbody id="tbody">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </select>
     </div>
 </div>
+<!--<select class="form-select"  name= "instructorId" id="course" required>-->
+<!--    <option  value="">Choose...</option>-->
+<!--    <th:block th:each = "student: ${students}">-->
+<!--        <option th:text = "${student.firstName} '' ${student.lastName}" th:value="${student.id}">-->
+<!--        </option>-->
+<!--    </th:block>-->
+
+<!--</select>-->
+<div class ="container">
+    <div class = "row">
+        <h1> List Students </h1>
+    </div>
+
+    <div class = "row">
+<!--        <div class = "col-lg-3">-->
+<!--            <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add Student</a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <form th:action="@{/courses/addStudentIntoCourse/{id} (id=${course.id})}" class = "table table-striped table-bordered" method = "POST"  >
+
+        <thead class = "table-dark">
+        <tr>
+            <th> Student First Name</th>
+            <th> Student Last Name</th>
+            <th> Student Email </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+
+        <tbody>
+<!--        <select class="form-select"  name= "instructorId" id="course" required>-->
+<!--            <option  value="">Choose...</option>-->
+<!--            <th:block th:each = "student: ${students}">-->
+<!--                <option th:text = "${student.firstName} '' ${student.lastName}" th:value="${student.id}">-->
+<!--                </option>-->
+<!--            </th:block>-->
+
+<!--        </select>-->
+<!--        <tr th:each = "student: ${students}">-->
+<!--            <td th:text = "${student.firstName}"></td>-->
+<!--            <td th:text = "${student.lastName}"></td>-->
+<!--            <td th:text = "${student.email}"></td>-->
+<!--            <td>-->
+<!--                <a th:href = "@{/students/edit/{id}(id=${student.id})}"-->
+<!--                   class = "btn btn-primary">Update</a>-->
+
+<!--                <a th:href = "@{/students/{id}(id=${student.id})}"-->
+<!--                   class = "btn btn-danger">Delete</a>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+        </tbody>
+
+    </form>
+
+</div>
+
+
+<!--<div class="main_content_inner ">-->
+<!--    <div class="container-fluid p-0 sm_padding_15px">-->
+<!--        <div class="row justify-content-center">-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="white_card card_height_100 mb_30">-->
+<!--                    <div class="white_card_header">-->
+<!--                        <div class="box_header m-0">-->
+<!--                            <div class="main-title">-->
+<!--                                <h3 class="m-0">Course select</h3>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+
+<!--                    </div>-->
+<!--                    <div class="white_card_body">-->
+<!--                        <div class="input-group mb-3">-->
+<!--                            <div class="input-group-prepend">-->
+<!--                                <label class="input-group-text" for="inputGroupSelect01">Course: </label>-->
+<!--                            </div>-->
+<!--                            <select class="custom-select" id="inputGroupSelect01">-->
+<!--&lt;!&ndash;                                <option selected="">Choose...</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <option value="1">One</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <option value="2">Two</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <option value="3">Three</option>&ndash;&gt;-->
+<!--                            </select>-->
+<!--                            <button type="button" id="btnCourse" class="btn btn-outline-primary">-->
+<!--                                Submit Course-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="input-group mb-3">-->
+<!--                            <div class = "col-md-6 ">-->
+<!--                                <span class = "fs-4">Select student to add :  </span>-->
+<!--                            </div>-->
+<!--                            <br>-->
+<!--                            <select class="custom-select" id="inputGroupSelect02">-->
+<!--&lt;!&ndash;                                <option selected="">Ch?n l?p ?? thêm h?c sinh...</option>&ndash;&gt;-->
+
+<!--                            </select>-->
+<!--                            <div class="input-group-append">-->
+<!--                                <label class="input-group-text" id="addStudentToCourse" for="inputGroupSelect02">Add</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <div class="white_card card_height_100 mb_30">-->
+<!--                    <div class="white_card_header">-->
+<!--                        <div class="box_header m-0">-->
+<!--                            <div class="main-title">-->
+<!--                                <h3 class="m-0">Student in Course</h3>-->
+<!--                            </div>-->
+<!--                            <table class="table table-striped">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th scope="col">#</th>-->
+<!--                                    <th scope="col">First</th>-->
+<!--                                    <th scope="col">Last</th>-->
+<!--                                    <th scope="col">Course</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody id="tbody">-->
+
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src="/resources/js/jquery-3.6.0.js"></script>
 <script src="/resources/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 <script src="/resources/js/jquery.validate-1.19.3.min.js"></script>
-<script>
-    $( document ).ready(function(){
-        showCourseList();
-        showStudentAvailable();
-        $("#addStudentToCourse").on("click",function(){
-            handlerAddStudent();
-        })
+<!--<script>-->
+<!--    $( document ).ready(function(){-->
+<!--        showCourseList();-->
+<!--        showStudentAvailable();-->
+<!--        $("#addStudentToCourse").on("click",function(){-->
+<!--            handlerAddStudent();-->
+<!--        })-->
 
-    });
-        function showCourseList() {
-            $.ajax({
-                type: "GET",
-                url: "/api/courses"
-            })
-                .done(function (data) {
-                    console.log(data);
-                    let str=` <option selected="">Choose...</option>`;
-                    for(let i=0; i<data.length; i++) {
-                        str+= ` <option value=${data[i].id}>${data[i].courseName}</option>`
-                    }
-                    $("#inputGroupSelect01").html(str);
-                })
-                .fail(function (resp) {
-                    alert("Show update modal error")
-                })
-        }
+<!--    });-->
+<!--        function showCourseList() {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "/api/courses"-->
+<!--            })-->
+<!--                .done(function (data) {-->
+<!--                    console.log(data);-->
+<!--                    let str=` <option selected="">Choose...</option>`;-->
+<!--                    for(let i=0; i<data.length; i++) {-->
+<!--                        str+= ` <option value=${data[i].id}>${data[i].courseName}</option>`-->
+<!--                    }-->
+<!--                    $("#inputGroupSelect01").html(str);-->
+<!--                })-->
+<!--                .fail(function (resp) {-->
+<!--                    alert("Show update modal error")-->
+<!--                })-->
+<!--        }-->
 
-    function showStudentAvailable(){
-            $.ajax({
-                type: "GET",
-                url: "/api/courses/addStudentToCourse"
-            })
-                .done(function (data) {
-                    console.log(data);
-                    let str=` <option selected="">Choose...</option>`;
-                    for(let i=0; i<data.length; i++) {
-                        str+= ` <option value=${data[i].id}>${data[i].firstName}    ${data[i].lastName}</option>`
-                    }
-                    $("#inputGroupSelect02").html(str);
-                })
-                .fail(function (resp) {
-                    alert("Show update modal error")
-            })
-    }
+<!--    function showStudentAvailable(){-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "/api/courses/addStudentToCourse"-->
+<!--            })-->
+<!--                .done(function (data) {-->
+<!--                    console.log(data);-->
+<!--                    let str=` <option selected="">Choose...</option>`;-->
+<!--                    for(let i=0; i<data.length; i++) {-->
+<!--                        str+= ` <option value=${data[i].id}>${data[i].firstName}    ${data[i].lastName}</option>`-->
+<!--                    }-->
+<!--                    $("#inputGroupSelect02").html(str);-->
+<!--                })-->
+<!--                .fail(function (resp) {-->
+<!--                    alert("Show update modal error")-->
+<!--            })-->
+<!--    }-->
 
-    function handlerAddStudent(){
-      let courseId =  $("#inputGroupSelect01").val();
-      let courseName = $("#inputGroupSelect01 option:selected").text();
-      let studentId = $("#inputGroupSelect02").val();
+<!--    function handlerAddStudent(){-->
+<!--      let courseId =  $("#inputGroupSelect01").val();-->
+<!--      let courseName = $("#inputGroupSelect01 option:selected").text();-->
+<!--      let studentId = $("#inputGroupSelect02").val();-->
 
-      $.ajax({
-          type: "POST",
-          url: "/api/courses/handlerAddStudent/"+courseId+"/"+studentId
-      }).done(function (data) {
-          console.log(data);
-          let str=` <tr>
-                                    <th scope="row">${data.id}</th>
-                                    <td>${data.firstName}</td>
-                                    <td>${data.lastName}</td>
-                                    <td>${courseName}</td>
-                                </tr>`;
+<!--      $.ajax({-->
+<!--          type: "POST",-->
+<!--          url: "/api/courses/handlerAddStudent/"+courseId+"/"+studentId-->
+<!--      }).done(function (data) {-->
+<!--          console.log(data);-->
+<!--          let str=` <tr>-->
+<!--                                    <th scope="row">${data.id}</th>-->
+<!--                                    <td>${data.firstName}</td>-->
+<!--                                    <td>${data.lastName}</td>-->
+<!--                                    <td>${courseName}</td>-->
+<!--                                </tr>`;-->
 
-          $("#tbody").append(str);
-          showStudentAvailable();
-      })
-          .fail(function (resp) {
-             console.log(resp);
-          })
-    }
-</script>
+<!--          $("#tbody").append(str);-->
+<!--          showStudentAvailable();-->
+<!--      })-->
+<!--          .fail(function (resp) {-->
+<!--             console.log(resp);-->
+<!--          })-->
+<!--    }-->
+<!--</script>-->
 

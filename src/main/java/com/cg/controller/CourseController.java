@@ -4,10 +4,13 @@ package com.cg.controller;
 import com.cg.dto.CourseDTO;
 import com.cg.model.Course;
 import com.cg.model.Instructor;
+import com.cg.model.Student;
 import com.cg.service.CourseService;
 import com.cg.service.InstructorService;
 import com.cg.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,6 +62,16 @@ public class CourseController {
         modelAndView.addObject("courseHeader", instructorService.getAllInstructors());
         model.addAttribute("course", courseService.findById(id).get());
 
+        return modelAndView;
+    }
+
+    @GetMapping("/addStudentToCourse/{id}")
+    public ModelAndView getAllStudentNotInCourse(@PathVariable Long id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Student> students = courseService.getAllStudentNotInCourse();
+        modelAndView.setViewName("courses/addStudentIntoCourse");
+        modelAndView.addObject("students",students);
+//        model.addAttribute("course", courseService.findById(id).get());
         return modelAndView;
     }
 
@@ -115,6 +128,8 @@ public class CourseController {
             return new ModelAndView("redirect:/courses");
         }
     }
+
+
 
 
 }
