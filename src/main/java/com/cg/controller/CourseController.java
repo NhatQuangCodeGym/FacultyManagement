@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/courses")
@@ -65,17 +66,53 @@ public class CourseController {
         return modelAndView;
     }
 
+
+
     @GetMapping("/addStudentToCourse/{id}")
     public ModelAndView getAllStudentNotInCourse(@PathVariable Long id, Model model){
         ModelAndView modelAndView = new ModelAndView();
         List<Student> students = courseService.getAllStudentNotInCourse();
         modelAndView.setViewName("courses/addStudentIntoCourse");
         modelAndView.addObject("students",students);
-//        model.addAttribute("course", courseService.findById(id).get());
+        model.addAttribute("course", courseService.findById(id).get());
         return modelAndView;
     }
 
-    @GetMapping("/courses/showStudentsList/{id}")
+    @PostMapping("/addStudentToCourse/{id}")
+    public ModelAndView addStudentToCourse(@PathVariable Long id, @ModelAttribute Student student) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional course = courseService.findById(id);
+        if (course.isPresent()){
+                Course course1 = courseService.findById(id).get();
+                student.setCourse(course1);
+                studentService.updateStudent(student);
+        }
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
+//        if (bindingResult.hasFieldErrors()) {
+////            return new ModelAndView("error")
+//            List<String> scripts = new ArrayList<>();
+//            for (ObjectError s : bindingResult.getAllErrors()
+//            ) {
+//                scripts.add(s.getDefaultMessage());
+//            }
+//
+//            modelAndView.addObject("script", scripts);
+//            modelAndView.setViewName("courses/updateCourse");
+//            return modelAndView;
+//        } else {
+//
+//            Student existingStudent = studentService.getStudentById(student.getId());
+//
+//            existingStudent.setCourse(courseService.findById(id).get());
+//            // save updated student object
+//            studentService.saveStudent(existingStudent);
+//            return new ModelAndView("redirect:/courses/addStudentIntoCourse");
+//        }
+
+    }
+
+    @GetMapping("/showStudentsList/{id}")
     public ModelAndView showStudentList(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("/courses/studentsInCourse");
         List<Student> students = studentService.findAllByCourseId(id);
@@ -111,7 +148,7 @@ public class CourseController {
 
     @PostMapping("/update/{id}")
     public ModelAndView updateCourse(@PathVariable Long id,
-                                         @Validated @ModelAttribute("course") Course course, BindingResult bindingResult) {
+                                         @Validated @ModelAttribute("student") Course course, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasFieldErrors()) {
 //            return new ModelAndView("error")
@@ -137,6 +174,21 @@ public class CourseController {
         }
     }
 
+//    @PutMapping("/{idCourse}/{idStudent}")
+//    public ModelAndView addStudentToCourse(@PathVariable Long idCourse, @PathVariable Long idStudent){
+//        Student student = studentService.getStudentById(idStudent);
+//        Optional course = courseService.findById(idCourse);
+//        if (course.isPresent()){
+//            if (student != null) {
+//                Course course1 = courseService.findById(idCourse).get();
+//                student.setCourse(course1);
+//                studentService.save(student);
+//            }
+//        }
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("redirect:/");
+//        return modelAndView;
+//    }
 
 
 
