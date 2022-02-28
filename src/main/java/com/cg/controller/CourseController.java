@@ -120,6 +120,28 @@ public class CourseController {
         return modelAndView;
     }
 
+    @GetMapping("/transfer/{id}")
+    public ModelAndView transferStudent(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("/courses/transferStudent");
+        Student student = studentService.getStudentById(id);
+        List<Course> courses = courseService.getAllCourse();
+        modelAndView.addObject("student", student);
+        modelAndView.addObject("courses", courses);
+        return modelAndView;
+    }
+
+    @PostMapping("/transfer/{id}")
+    public ModelAndView doTransferStudent(@PathVariable Long id,@ModelAttribute Student student) {
+//        ModelAndView modelAndView = new ModelAndView("/courses/transferStudent");
+        Student studentUpdate = studentService.getStudentById(id);
+        Course course = courseService.findById(student.getCourse().getId()).get();
+        studentUpdate.setCourse(course);
+        studentService.saveStudent(studentUpdate);
+        return new ModelAndView("redirect:/courses");
+    }
+
+
+
     @PostMapping("/create")
     public ModelAndView handlerAddNewCourse(@Valid @ModelAttribute CourseDTO courseDTO, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();

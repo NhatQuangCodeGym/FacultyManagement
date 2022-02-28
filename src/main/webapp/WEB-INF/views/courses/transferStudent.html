@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<th:block th:replace="/layout/head :: head"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Student </h1>
+            <div class = "card-body">
+<!--                <ul th:each="s:${script}">-->
+<!--                    <li th:text="${s}"></li>-->
+<!--                </ul>-->
+                <form th:action="@{/courses/transfer/{id} (id=${student.id})}" th:object = "${student}" method="POST">
+                    <div class ="form-group">
+                        <label> Student First Name </label>
+                        <input
+                                type = "text"
+                                name = "firstName"
+                                th:field = "*{firstName}"
+                                class = "form-control"
+                                placeholder="Enter Student First Name"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Student Last Name </label>
+                        <input
+                                type = "text"
+                                th:field = "*{lastName}"
+                                class = "form-control"
+                                placeholder="Enter Student Last Name"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Student Email </label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field = "*{email}"
+                                class = "form-control"
+                                placeholder="Enter Student Email"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Course Options </label>
+                        <div id="cid_3" class="form-input-wide" data-layout="half">
+                            <select class="form-select" name="course.id" id="course">
+                                <th:block th:each="c:${courses}">
+                                    <option th:if="${student.course.id == c.id}" th:text="${c.courseName}" th:value="${c.id}" selected></option>
+                                    <option th:if="${student.course.id != c.id}" th:text="${c.courseName}" th:value="${c.id}">
+                                    </option>
+                                </th:block>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Transfer
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

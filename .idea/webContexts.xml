@@ -7,6 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/courses.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/createCourse.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/list.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/transferStudent.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses/updateCourse.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/instructors/addInstructor.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/instructors" />
